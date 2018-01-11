@@ -2497,20 +2497,6 @@ max-width: 1920px;
 				border: solid 1px #fff;
 			}
 
-	#header-wrapper {
-		background-image: url("header.png");
-		background-size: 100% 100%;
-	}
-
-
-		#header-wrapper:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 50%;
-		}
 
 	
 
