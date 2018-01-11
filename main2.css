@@ -617,9 +617,14 @@ max-width: 1920px;
 		height: 22em;
 	}
 
+	.teacher_box {
+		padding-left: 15%;
+	}
+
 	.teacher_photo {
 		width: 11em;
 		height: 11em;
+		margin-left: 10%;
 	}
 
 	.teacher_name {
@@ -645,7 +650,7 @@ max-width: 1920px;
 
 	.divider {
 		padding-top: 1.5em;
-		width: 12em;
+		width: 14em;
 	}
 
 	.crew {
