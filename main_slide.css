@@ -1909,7 +1909,7 @@ body {
         width: 100%;
         /*위에 올라가는 레이어의 포지션은 top, bottom 둘 중 하나, left, right 둘 중 하나의 속성을 선택하여 잡아준다.*/ 
         text-align:center; 
-        top: 21%;
+        top: 23%;
         left: 0;
   
     }
