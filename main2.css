@@ -196,7 +196,8 @@ max-width: 1920px;
 	}
 
 	.process_introduce {
-		text-align: center;
+		padding-left: 10%;
+		text-align: left;
 		font-size: 20px;
 		color: #595857;
 		font-family: 'Noto Sans KR', sans-serif;
@@ -211,6 +212,7 @@ max-width: 1920px;
 		height: 71px;
 	}
 	.icon_process_it {
+		margin-right: 15px;
 		width: 74px;
 		height: 74px;
 	}
@@ -297,8 +299,9 @@ max-width: 1920px;
 	.icon_title {
 		text-align: center;
 		text-transform: uppercase;
-		font-size: 40px;
+		font-size: 35px;
 		color: #595857;
+		font-weight: 600;
 	}
 
 	.line {
