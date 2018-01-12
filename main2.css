@@ -68,18 +68,22 @@ max-width: 1920px;
 	-o-transform: rotateY(0deg);
 	-ms-transform: rotateY(0deg);
 	transform: rotateY(0deg);
+	
 	}
 	.image-flip:hover .frontside, .image-flip.hover .frontside {
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
 	-o-transform: rotateY(180deg);
 	transform: rotateY(180deg);
+
 	}
 	.image-flip {
+
 	padding: 0;
 	margin-bottom: 100px;
 	width: 300px;
 	height: 250px;
+	
 	}
 	.mainflip {
 	-webkit-transition: 1s;
@@ -92,6 +96,7 @@ max-width: 1920px;
 	transition: 1s;
 	transform-style: preserve-3d;
 	position: relative;
+	
 	}
 	.frontside, .backside {
 	-webkit-backface-visibility: hidden;
@@ -116,6 +121,7 @@ max-width: 1920px;
 	-webkit-transform: rotateY(0deg);
 	-ms-transform: rotateY(0deg);
 	z-index: 2;
+	border-radius: 0;
 	}
 	.backside {
 	-webkit-transform: rotateY(-180deg);
@@ -124,6 +130,7 @@ max-width: 1920px;
 	-ms-transform: rotateY(-180deg);
 	transform: rotateY(-180deg);
 	}
+
 	
 .test {
 	max-width: 893px;   
