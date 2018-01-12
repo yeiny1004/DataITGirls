@@ -33,6 +33,11 @@ body {
         height: 220px;
     }
     
+    .main_logo {
+        width:395px;
+        height: 130px;
+    }
+
     .logo_main {
         width: 7em;
         height: 3.5em;
