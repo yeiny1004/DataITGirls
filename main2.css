@@ -180,7 +180,7 @@ max-width: 1920px;
 	#brand {
 		font-size: 0.9em;
 		color: #fefefe;
-		font-weight: 400;
+		font-weight: 350;
 		line-height: 1.6em;
 		opacity: 0.85;
 		font-family: 'Noto Sans KR', sans-serif;
@@ -342,16 +342,19 @@ max-width: 1920px;
 	.background {
 		background-image: url('background_img.png');
 		width: 100%;
-		height: 12em;
+		height: 200px;
+		vertical-align: middle;
 	}
 
 	.data_title {
+		padding-top: 15%;
 		font-size: 1.3em;
 		font-weight: 600;
 		color: #3371ae;
 	}
 
 	.data_inside {
+		margin-top: -9%;
 		font-size: 0.6em;
 		font-weight: 200;
 		color: #6496bc;
@@ -384,16 +387,17 @@ max-width: 1920px;
 	  }
 
 	.story_title {
+		letter-spacing: -1px;
 		font-size: 1.5em;
 		text-align: left;
 		padding-top: 6%;
-		padding-left: 8%;
+		padding-left: 10%;
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 
 	.story_line {
-		padding-left: 5%;
-		width: 85%;
+		padding-left: 6%;
+		width: 92%;
 		margin-top: -9%;
 	}
 
@@ -401,7 +405,7 @@ max-width: 1920px;
 		font-size: 1em;
 		text-align: left;
 		margin-top: -3%;
-		padding-left: 8%;
+		padding-left: 10%;
 		font-family: 'Noto Sans KR', sans-serif;
 	}
 
