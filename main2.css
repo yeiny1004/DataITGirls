@@ -843,13 +843,15 @@ max-width: 1920px;
 	li a:hover {
 		text-decoration: none;
 		letter-spacing: 1px;
-		color: #F2E769;
 		/* text-shadow: 0 0 3px white;*/
 		font-weight: bolder;
 		border-bottom-color: transparent;
 	}
 
-	.nav_introduce:hover::after {
+
+
+
+	.nav_introduce0:after, .nav_introduce:hover::after {
 		content: '';
 		width: 100px;
 		display: block; 
@@ -867,7 +869,7 @@ max-width: 1920px;
 		border-bottom: 5px solid #f00;
 	}
 
-	.nav_portfolio:hover::after {
+.nav_portfolio0:after, .nav_portfolio:hover::after {
 		content: '';
 		width: 95px;
 		display: block; 
@@ -876,7 +878,7 @@ max-width: 1920px;
 		border-bottom: 5px solid #f00;
 	}
 
-	.nav_contacts:hover::after {
+	.nav_contacts0:after, .nav_contacts:hover::after {
 		content: '';
 		width: 91px;
 		display: block; 
@@ -894,7 +896,7 @@ max-width: 1920px;
 		border-bottom: 5px solid #f00;
 	}
 
-	.nav_people2:hover::after {
+	.nav_people0:after, .nav_people2:hover::after {
 		content: '';
 		width: 65px;
 		display: block; 

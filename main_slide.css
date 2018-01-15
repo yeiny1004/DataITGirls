@@ -1765,6 +1765,42 @@ body {
 
 }
 
+.nav_introduce0:after, .nav_introduce:hover::after {
+    content: '';
+    width: 100px;
+    display: block; 
+    position: absolute; 
+    margin-top: 16px; 
+    border-bottom: 5px solid #f00;
+}
+
+.nav_people:hover::after {
+    content: '';
+    width: 65px;
+    display: block; 
+    position: absolute; 
+    margin-top: 16px; 
+    border-bottom: 5px solid #f00;
+}
+
+.nav_portfolio0:after, .nav_portfolio:hover::after {
+    content: '';
+    width: 95px;
+    display: block; 
+    position: absolute; 
+    margin-top: 16px; 
+    border-bottom: 5px solid #f00;
+}
+
+.nav_contacts0:after, .nav_contacts:hover::after {
+    content: '';
+    width: 91px;
+    display: block; 
+    position: absolute; 
+    margin-top: 16px; 
+    border-bottom: 5px solid #f00;
+}
+
 body {
     background: #f0f4f4;
     color: #5b5b5b;
