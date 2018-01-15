@@ -16,44 +16,46 @@
 	<link rel="stylesheet" href="main2.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	 crossorigin="anonymous">
-	 <script type="text/javascript" src="./jquery-2.2.3.min.js"></script>
+	
+	 <link rel="stylesheet" href="swiper.min.css">
+	<script type="text/javascript" src="./jquery-2.2.3.min.js"></script>
 	<script src="javascript.js"></script>
 </head>
 
 <body>
+	<nav id="navi">
+		<ul>
+			<li>
+				<a href="index.html" style="float:left; padding-top:0">
+					<img src="logo_small.png" align="left" class="logo_main" style="padding:0">
+				</a>
+			</li>
+			<li>
+				<a href="introduce.html" class="nav_introduce">Introduce</a>
+			</li>
+			<li>
+				<a href="people.html" class="nav_people">People</a>
+			</li>
+			<li>
+				<a href="#" class="nav_portfolio">Portfolio</a>
+			</li>
+			<li style="margin-right:1%">
+				<a href="contacts.html" class="nav_contacts">Contacts</a>
+			</li>
+		</ul>
+	</nav>
 
-		
-	
-			<nav id="nav">
-				<ul>
-					<li>
-							<a href="index.html" style="float:left; padding-top:0"><img src="logo_small.png" align="left" class="logo_main" style="padding:0"></a>
-					</li>
-					<li>
-						<a href="introduce.html">Introduce</a>
-					</li>
-					<li>
-						<a href="people.html">People</a>
-					</li>
-					<li>
-						<a href="#">Portfolio</a>
-					</li>
-					<li>
-						<a href="contacts.html">Contacts</a>
-					</li>
-				</ul>
-			</nav>
-			
 	<p class="space1"></p>
 	<div class="full_box2">
-			<div class="contacts_main1">
-					미래를 이끄는 걸크러쉬,<br>
-					<span class="contacts_main2">데잇걸즈</span>
-					<span class="contacts_main3">가 여러분과 함께 합니다.</span>
-				</div>
+		<div class="contacts_main1">
+			미래를 이끄는 걸크러쉬,
+			<br>
+			<span class="contacts_main2">데잇걸즈</span>
+			<span class="contacts_main3">가 여러분과 함께 합니다.</span>
+		</div>
 	</div>
 	<div class="full_box4">
-				<p class="space"></p>
+		<p class="space"></p>
 		<div class="container" align="center">
 			<div class="row">
 				<div class="col-md-4">
@@ -106,8 +108,10 @@
 	</div>
 	<p style="padding: 3em"></p>
 
-	<button id="top" class="top" type="button" onclick="$('html, body').stop().animate( { scrollTop : 0 },600 );" style="outline:none"><img src="scroll_button.png"></button>
-	
+	<button id="top" class="top" type="button" onclick="$('html, body').stop().animate( { scrollTop : 0 },600 );" style="outline:none">
+		<img src="scroll_button.png">
+	</button>
+
 	<p class="space"></p>
 
 	<footer id="footer">
@@ -124,9 +128,16 @@
 					<p style="font-weight:300">교육에 대한 후원, 의견, 취재 등의 관심은 아래로 보내주세요. 감사합니다.</p>
 					<p style="padding:15px;"></p>
 					<div style="line-height:10px">
-						<p class="footer_title">전화&nbsp<span class="address">  +82 2-6279-2013</span> &nbsp | &nbsp 팩스&nbsp<span class="address"> +82 2-6279-2014</span></p>
-						<p class="footer_title">이메일&nbsp<span class="address">  recruit@neuroacs.com</span></p>
-						<p class="footer_title">페이스북&nbsp<span class="address"> https://www.facebook.com/dataitgirls/</span></p>
+						<p class="footer_title">전화&nbsp
+							<span class="address"> +82 2-6279-2013</span> &nbsp | &nbsp 팩스&nbsp
+							<span class="address"> +82 2-6279-2014</span>
+						</p>
+						<p class="footer_title">이메일&nbsp
+							<span class="address"> recruit@neuroacs.com</span>
+						</p>
+						<p class="footer_title">페이스북&nbsp
+							<span class="address"> https://www.facebook.com/dataitgirls/</span>
+						</p>
 					</div>
 				</div>
 			</div>

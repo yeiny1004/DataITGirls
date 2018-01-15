@@ -78,7 +78,6 @@ max-width: 1920px;
 
 	}
 	.image-flip {
-
 	padding: 0;
 	margin-bottom: 100px;
 	width: 300px;
@@ -134,7 +133,7 @@ max-width: 1920px;
 	
 .test {
 	max-width: 893px;   
-	min-width: 890px; 
+	min-width: 893px; 
    margin-top: 0;
    margin-bottom: 0;
    margin-left: auto;
@@ -417,6 +416,7 @@ max-width: 1920px;
 	}
 
 	#science {
+		margin-left: -3%;
 		width: 280px;
 		height: 60px;
 	}
@@ -429,8 +429,9 @@ max-width: 1920px;
 	}
 
 	#logo_neuro_big {
-		margin-top: -10px;
-		width: 200px;
+	
+		margin-top: -12px;
+		width: 230px;
 		height:60px;
 	}
 
@@ -481,7 +482,7 @@ max-width: 1920px;
 	}
 
 	.epi_line {
-		margin-top: 30px;
+		margin-top: 20px;
 		margin-left: -40px;
 		background-color:#3177c4; 
 		opacity: 0.5;
@@ -490,7 +491,7 @@ max-width: 1920px;
 	}
 
 	.epi_line2 {
-		margin-top: 30px;
+		margin-top: 20px;
 		background-color:#3177c4; 
 		opacity: 0.5;
 		width: 280px; 
@@ -500,7 +501,7 @@ max-width: 1920px;
 	.epi_talk {
 		padding-top: 20px;
 		font-size: 20px;
-		line-height: 35px;
+		line-height: 30px;
 		font-family: 'Jeju Myeongjo', serif;
 	}
 
@@ -635,7 +636,7 @@ max-width: 1920px;
 	}
 
 	.teacher_box {
-		padding-left: 15%;
+		padding-left: 17%;
 	}
 
 	.teacher_photo {
@@ -709,7 +710,6 @@ max-width: 1920px;
 
 	.contacts_main1{
 		padding-left: 3%;
-		letter-spacing: 2px;
 		text-align: left;
 		font-size: 25px;
 	}
@@ -808,6 +808,11 @@ max-width: 1920px;
 		height: 24em;
 	}
 
+	#map_canvas {
+		width:100%;
+		height: 100%;
+	}
+
 
 	ul {
 		list-style-type: none;
@@ -836,16 +841,97 @@ max-width: 1920px;
 	}
 	
 	li a:hover {
-	    text-decoration: underline;
+		text-decoration: none;
 		letter-spacing: 1px;
 		color: #F2E769;
-		text-shadow: 0 0 3px white;
+		/* text-shadow: 0 0 3px white;*/
 		font-weight: bolder;
 		border-bottom-color: transparent;
-			
-		
 	}
 
+	.nav_introduce:hover::after {
+		content: '';
+		width: 100px;
+		display: block; 
+		position: absolute; 
+		margin-top: 14px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_people:hover::after {
+		content: '';
+		width: 65px;
+		display: block; 
+		position: absolute; 
+		margin-top: 14px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_portfolio:hover::after {
+		content: '';
+		width: 95px;
+		display: block; 
+		position: absolute; 
+		margin-top: 14px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_contacts:hover::after {
+		content: '';
+		width: 91px;
+		display: block; 
+		position: absolute; 
+		margin-top: 14px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_introduce2:hover::after {
+		content: '';
+		width: 100px;
+		display: block; 
+		position: absolute; 
+		margin-top: 16px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_people2:hover::after {
+		content: '';
+		width: 65px;
+		display: block; 
+		position: absolute; 
+		margin-top: 16px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_portfolio2:hover::after {
+		content: '';
+		width: 95px;
+		display: block; 
+		position: absolute; 
+		margin-top: 16px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	.nav_contacts2:hover::after {
+		content: '';
+		width: 91px;
+		display: block; 
+		position: absolute; 
+		margin-top: 16px; 
+		border-bottom: 5px solid #f00;
+	}
+
+	
+	
+	/*li a:hover:after {
+		content: '';
+		width: 100px;
+		height: 1px;
+		display: block; 
+		position: absolute; 
+		margin-top: 16px; 
+		border-bottom: 3px solid #f00;
+	}*/
 	@-moz-keyframes reveal-banner {
 		0% {
 			opacity: 0;
@@ -2026,7 +2112,7 @@ max-width: 1920px;
 		-webkit-transition: color .25s ease-in-out;
 		-ms-transition: color .25s ease-in-out;
 		transition: color .25s ease-in-out;
-		text-decoration: underline;
+		text-decoration: none;
 		color: #717479;
 	}
 
