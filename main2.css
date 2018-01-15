@@ -862,7 +862,7 @@ max-width: 1920px;
 		border-bottom: 5px solid #f00;
 	}
 
-	.nav_people:hover::after {
+	.nav_people0:after, .nav_people:hover::after {
 		content: '';
 		width: 65px;
 		display: block; 
@@ -889,6 +889,7 @@ max-width: 1920px;
 		border-bottom: 5px solid #f00;
 	}
 
+	/*
 	.nav_introduce2:hover::after {
 		content: '';
 		width: 100px;
@@ -923,7 +924,7 @@ max-width: 1920px;
 		position: absolute; 
 		margin-top: 16px; 
 		border-bottom: 5px solid #f00;
-	}
+	} */
 
 	
 	
