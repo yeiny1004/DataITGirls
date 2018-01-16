@@ -486,22 +486,31 @@ max-width: 1920px;
 		margin-left: -40px;
 		background-color:#3177c4; 
 		opacity: 0.5;
-		width: 250px; 
+		width: 84%; 
 		height: 1px;
 	}
 
 	.epi_line2 {
-		margin-top: 20px;
+		margin-left: 15%;
+		margin-top: 25px;
 		background-color:#3177c4; 
 		opacity: 0.5;
-		width: 280px; 
+		width: 85%; 
 		height: 1px;
 	}
 
+	.epi_talk_title{
+		text-align: left;
+		margin-left: -3%;
+	}
+
 	.epi_talk {
+		letter-spacing: 0;
+		padding-left: 16%;
 		padding-top: 20px;
-		font-size: 20px;
-		line-height: 30px;
+		font-size: 15px;
+		line-height: 24px;
+		text-align: left;
 		font-family: 'Jeju Myeongjo', serif;
 	}
 
@@ -855,7 +864,7 @@ max-width: 1920px;
 
 	.nav_introduce0:after, .nav_introduce:hover::after {
 		content: '';
-		width: 100px;
+		width: 95px;
 		display: block; 
 		position: absolute; 
 		margin-top: 14px; 
@@ -873,7 +882,7 @@ max-width: 1920px;
 
 .nav_portfolio0:after, .nav_portfolio:hover::after {
 		content: '';
-		width: 95px;
+		width: 93px;
 		display: block; 
 		position: absolute; 
 		margin-top: 14px; 
