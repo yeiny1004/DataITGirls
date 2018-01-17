@@ -467,7 +467,7 @@ max-width: 1920px;
 	
 
 	.epilogue {
-		width: 900px;
+		width: 85%;
 		height: 600px;
 		margin: auto;
 	}
@@ -485,19 +485,19 @@ max-width: 1920px;
 
 	.epi_line {
 		margin-top: 20px;
-		margin-left: -40px;
+		margin-left: -1%;
 		background-color:#3177c4; 
 		opacity: 0.5;
-		width: 84%; 
+		width: 87.5%; 
 		height: 1px;
 	}
 
 	.epi_line2 {
-		margin-left: 15%;
+		margin-left: 10%;
 		margin-top: 25px;
 		background-color:#3177c4; 
 		opacity: 0.5;
-		width: 85%; 
+		width: 96%; 
 		height: 1px;
 	}
 
@@ -508,7 +508,7 @@ max-width: 1920px;
 
 	.epi_talk {
 		letter-spacing: 0;
-		padding-left: 16%;
+		padding-left: 20%;
 		padding-top: 20px;
 		font-size: 15px;
 		line-height: 24px;
@@ -516,6 +516,26 @@ max-width: 1920px;
 		font-family: 'Jeju Myeongjo', serif;
 	}
 
+	.epi_box {
+		padding-top: 7%;
+		margin-top: -10%;
+		border: solid 1px rgb(168, 164, 164);
+		height: 500px;
+	}
+
+
+	.epi_data_name {
+		text-align: right;
+		font-size: 15px;
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+
+	.epi_data_talk {
+		margin-top: 3%;
+		text-align: left;
+		font-size: 13px;
+		font-family: 'Jeju Myeongjo', serif;
+	}
 
 
 	.people_line {
@@ -3586,3 +3606,7 @@ max-width: 1920px;
 						}
 
 	}
+
+
+
+	
