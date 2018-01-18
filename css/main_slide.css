@@ -118,6 +118,13 @@ li a:hover {
     font-weight: 300;
 }
 
+.main_image {
+    margin-top: -6%;
+    margin-left: -4%;
+    width: 550px;
+    height: 550px;
+}
+
 .space {
     padding: 40px;
 }
