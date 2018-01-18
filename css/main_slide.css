@@ -34,8 +34,16 @@ body {
     }
     
     .main_logo {
+        margin-top: 4%;
         width:395px;
         height: 130px;
+    }
+
+    .main_line {
+        margin-bottom: 10%; 
+        background-color: #3177c4;
+        width: 25px;
+        height: 4px;
     }
 
     .logo_main {
