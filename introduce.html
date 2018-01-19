@@ -17,9 +17,89 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	 crossorigin="anonymous">
 
+
+<link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="jqueryui/style.css">
+	
+
 	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 	<script src="javascript.js"></script>
-	
+
+	<script>
+			$(function() {
+			  
+			  var scrollPane = $( ".scroll-pane" ),
+				scrollContent = $( ".scroll-content" );
+		   
+			  
+			  var scrollbar = $( ".scroll-bar" ).slider({
+				slide: function( event, ui ) {
+				  if ( scrollContent.width() > scrollPane.width() ) {
+					scrollContent.css( "margin-left", Math.round(
+					  ui.value / 100 * ( scrollPane.width() - scrollContent.width() )
+					) + "px" );
+				  } else {
+					scrollContent.css( "margin-left", 0 );
+				  }
+				}
+			  });
+		   
+			  
+			  var handleHelper = scrollbar.find( ".ui-slider-handle" )
+			  .mousedown(function() {
+				scrollbar.width( handleHelper.width() );
+			  })
+			  .mouseup(function() {
+				scrollbar.width( "100%" );
+			  })
+			  .append( "<span class='ui-icon ui-icon-grip-dotted-vertical'></span>" )
+			  .wrap( "<div class='ui-handle-helper-parent'></div>" ).parent();
+		   
+			  
+			  scrollPane.css( "overflow", "hidden" );
+		   
+			  
+			  function sizeScrollbar() {
+				var remainder = scrollContent.width() - scrollPane.width();
+				var proportion = remainder / scrollContent.width();
+				var handleSize = scrollPane.width() - ( proportion * scrollPane.width() );
+				scrollbar.find( ".ui-slider-handle" ).css({
+				  width: handleSize,
+				  "margin-left": -handleSize / 2
+				});
+				handleHelper.width( "" ).width( scrollbar.width() - handleSize );
+			  }
+		   
+			  
+			  function resetValue() {
+				var remainder = scrollPane.width() - scrollContent.width();
+				var leftVal = scrollContent.css( "margin-left" ) === "auto" ? 0 :
+				  parseInt( scrollContent.css( "margin-left" ) );
+				var percentage = Math.round( leftVal / remainder * 100 );
+				scrollbar.slider( "value", percentage );
+			  }
+		   
+			  
+			  function reflowContent() {
+				  var showing = scrollContent.width() + parseInt( scrollContent.css( "margin-left" ), 10 );
+				  var gap = scrollPane.width() - showing;
+				  if ( gap > 0 ) {
+					scrollContent.css( "margin-left", parseInt( scrollContent.css( "margin-left" ), 10 ) + gap );
+				  }
+			  }
+		   
+			  
+			  $( window ).resize(function() {
+				resetValue();
+				sizeScrollbar();
+				reflowContent();
+			  });
+			  
+			  setTimeout( sizeScrollbar, 10 );//safari 超时
+			});
+			</script>
 </head>
 
 <body>
@@ -322,14 +402,44 @@
 			</div>
 		</div>
 		<div class="space1"></div>
-		<!--
+		
+	</div>
+	
 	<div align="right">
-		<button onclick="document.getElementById('id01').style.display='block'" style="background-color:transparent; outline:none; text-decoration:underline">교육일정 보기</button>
+		<button onclick="document.getElementById('id01').style.display='block'" style="background-color:transparent; outline:none; text-decoration:underline; font-size:20px">교육일정 보기</button>
 		<div id="id01" style="display:none">
 			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</span>
-			<embed src="education schedule_web_2.pdf" width="1200" height="650" type='application/pdf'>
+		<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+			<div class="scroll-content">
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:11px"><img src="schedule/schedule_8.42.png" width="331px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:94px"><img src="schedule/schedule_9.1.png" width="414px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:67px"><img src="schedule/schedule_9.2.png" width="387px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:100px"><img src="schedule/schedule_9.3.png" width="431px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:125px"><img src="schedule/schedule_9.4.png" width="445px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:1px"><img src="schedule/schedule_10.2.png" width="321px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:57px"><img src="schedule/schedule_10.3.png" width="377px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:103px"><img src="schedule/schedule_10.4.png" width="423px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:98px"><img src="schedule/schedule_11.1.png" width="418px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:13px"><img src="schedule/schedule_11.2.png" width="333px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:95px"><img src="schedule/schedule_11.3.png" width="415px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:120px"><img src="schedule/schedule_11.4.png" width="440px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:6px"><img src="schedule/schedule_11.5.png" width="327px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:-2px"><img src="schedule/schedule_12.1.png" width="318px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" style="margin-right:-1px"><img src="schedule/schedule_12.2.png" width="318px" height="410px"></div>
+			  <div class="scroll-content-item ui-widget-header" ><img src="schedule/schedule_12.3.png" width="381px" height="410px"></div>
+			 
+			</div>
+		<!--	<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+			  <div class="scroll-bar"></div>
+			</div> -->
+		  </div>
 		</div>
-	</div>  -->
+	</div>  
+
+	
+		
+
+	<div class="full_box4">
 		<p class="space"></p>
 	</div>
 
@@ -466,7 +576,14 @@
 			</div>
 		</div>
 	</footer>
+
+
+
+	
+
+
 	<script src="js/javascript.js"></script>
+
 </body>
 
 </html>
