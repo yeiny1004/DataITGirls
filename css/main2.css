@@ -362,7 +362,7 @@ max-width: 1920px;
 	}
 
 
-	.scroll-pane { overflow: auto; width: 99%; float:left;border:none }
+	.scroll-pane { overflow: auto; width: 99%; float:left;}
 	.scroll-content { width: 6200px; float: left; border:none}
 	.scroll-content-item { height: 410px; float: left; margin: 0px; font-size: 3em; line-height: 96px; text-align: center; border:none }
 	.scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
