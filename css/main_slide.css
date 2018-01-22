@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Bitter');
-@import url('https://fonts.googleapis.com/css?family=Spectral+SC');
 @import url("font-awesome.min.css");
 
 body {
@@ -88,14 +87,13 @@ li {
 }
 
 li a {
-    font-size: 16px;
+    font-size: 18px;
     display: inline-block;
     color: white;
     text-align: center;
     padding: 20px 20px;
     text-decoration: none;
-    /*font-family: 'Bitter', serif;*/
-    font-family: 'Spectral SC', serif;
+    font-family: 'Lato', sans-serif;
 }
 
 li a:hover {
@@ -1782,7 +1780,7 @@ body {
 
 .nav_introduce0:after, .nav_introduce:hover::after {
     content: '';
-    width: 100px;
+    width: 93px;
     display: block; 
     position: absolute; 
     margin-top: 16px; 
@@ -1800,7 +1798,7 @@ body {
 
 .nav_portfolio0:after, .nav_portfolio:hover::after {
     content: '';
-    width: 95px;
+    width: 86px;
     display: block; 
     position: absolute; 
     margin-top: 16px; 
@@ -1809,7 +1807,7 @@ body {
 
 .nav_contacts0:after, .nav_contacts:hover::after {
     content: '';
-    width: 91px;
+    width: 85px;
     display: block; 
     position: absolute; 
     margin-top: 16px; 

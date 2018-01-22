@@ -4,7 +4,6 @@
 @import url("https://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css");
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Bitter');
 @import url('https://fonts.googleapis.com/css?family=Spectral+SC');
 @import url("https://fonts.googleapis.com/earlyaccess/notosanskr.css");
 /* @import url("font-awesome.min.css"); */
@@ -900,15 +899,14 @@ max-width: 1920px;
 	}
 	
 	li a {
-		font-size: 16px;
+		font-size: 18px;
 		display: inline-block;
 		color: white;
 		text-align: center;
 		padding: 11px 14px;
 		text-decoration: none;
-		/*font-family: 'Bitter', serif;*/
-		font-family: 'Spectral SC', serif;
-		padding-top: 1.5em;
+		font-family: 'Lato', sans-serif;
+		padding-top: 1.5%;
 	}
 	
 	li a:hover {
@@ -924,7 +922,7 @@ max-width: 1920px;
 
 	.nav_introduce0:after, .nav_introduce:hover::after {
 		content: '';
-		width: 95px;
+		width: 85px;
 		display: block; 
 		position: absolute; 
 		margin-top: 14px; 
@@ -933,7 +931,7 @@ max-width: 1920px;
 
 	.nav_people0:after, .nav_people:hover::after {
 		content: '';
-		width: 65px;
+		width: 62px;
 		display: block; 
 		position: absolute; 
 		margin-top: 14px; 
@@ -942,7 +940,7 @@ max-width: 1920px;
 
 .nav_portfolio0:after, .nav_portfolio:hover::after {
 		content: '';
-		width: 93px;
+		width: 80px;
 		display: block; 
 		position: absolute; 
 		margin-top: 14px; 
@@ -951,7 +949,7 @@ max-width: 1920px;
 
 	.nav_contacts0:after, .nav_contacts:hover::after {
 		content: '';
-		width: 91px;
+		width: 80px;
 		display: block; 
 		position: absolute; 
 		margin-top: 14px; 
