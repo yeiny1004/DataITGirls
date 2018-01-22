@@ -356,6 +356,16 @@ max-width: 1920px;
 		font-weight: 600;
 	}
 
+	.title_story {
+		text-align: left;
+		font-size: 2.2em;
+		padding-left: 2%;
+		font-family: 'Noto Sans KR', sans-serif;
+		color: #182231;
+		opacity: 0.95;
+		font-weight: 600;
+	}
+
 	.background {
 		background-image: url('background_img.png');
 		width: 100%;
