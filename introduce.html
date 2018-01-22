@@ -28,78 +28,78 @@
 	<script src="javascript.js"></script>
 
 	<script>
-			$(function() {
-			  
-			  var scrollPane = $( ".scroll-pane" ),
-				scrollContent = $( ".scroll-content" );
-		   
-			  
-			  var scrollbar = $( ".scroll-bar" ).slider({
-				slide: function( event, ui ) {
-				  if ( scrollContent.width() > scrollPane.width() ) {
-					scrollContent.css( "margin-left", Math.round(
-					  ui.value / 100 * ( scrollPane.width() - scrollContent.width() )
-					) + "px" );
-				  } else {
-					scrollContent.css( "margin-left", 0 );
-				  }
-				}
-			  });
-		   
-			  
-			  var handleHelper = scrollbar.find( ".ui-slider-handle" )
-			  .mousedown(function() {
-				scrollbar.width( handleHelper.width() );
-			  })
-			  .mouseup(function() {
-				scrollbar.width( "100%" );
-			  })
-			  .append( "<span class='ui-icon ui-icon-grip-dotted-vertical'></span>" )
-			  .wrap( "<div class='ui-handle-helper-parent'></div>" ).parent();
-		   
-			  
-			  scrollPane.css( "overflow", "hidden" );
-		   
-			  
-			  function sizeScrollbar() {
-				var remainder = scrollContent.width() - scrollPane.width();
-				var proportion = remainder / scrollContent.width();
-				var handleSize = scrollPane.width() - ( proportion * scrollPane.width() );
-				scrollbar.find( ".ui-slider-handle" ).css({
-				  width: handleSize,
-				  "margin-left": -handleSize / 2
-				});
-				handleHelper.width( "" ).width( scrollbar.width() - handleSize );
-			  }
-		   
-			  
-			  function resetValue() {
-				var remainder = scrollPane.width() - scrollContent.width();
-				var leftVal = scrollContent.css( "margin-left" ) === "auto" ? 0 :
-				  parseInt( scrollContent.css( "margin-left" ) );
-				var percentage = Math.round( leftVal / remainder * 100 );
-				scrollbar.slider( "value", percentage );
-			  }
-		   
-			  
-			  function reflowContent() {
-				  var showing = scrollContent.width() + parseInt( scrollContent.css( "margin-left" ), 10 );
-				  var gap = scrollPane.width() - showing;
-				  if ( gap > 0 ) {
-					scrollContent.css( "margin-left", parseInt( scrollContent.css( "margin-left" ), 10 ) + gap );
-				  }
-			  }
-		   
-			  
-			  $( window ).resize(function() {
-				resetValue();
-				sizeScrollbar();
-				reflowContent();
-			  });
-			  
-			  setTimeout( sizeScrollbar, 10 );//safari 超时
-			});
-			</script>
+  $(function() {
+  
+    var scrollPane = $( ".scroll-pane" ),
+      scrollContent = $( ".scroll-content" );
+ 
+   
+    var scrollbar = $( ".scroll-bar" ).slider({
+      slide: function( event, ui ) {
+        if ( scrollContent.width() > scrollPane.width() ) {
+          scrollContent.css( "margin-left", Math.round(
+            ui.value / 100 * ( scrollPane.width() - scrollContent.width() )
+          ) + "px" );
+        } else {
+          scrollContent.css( "margin-left", 0 );
+        }
+      }
+    });
+ 
+
+    var handleHelper = scrollbar.find( ".ui-slider-handle" )
+    .mousedown(function() {
+      scrollbar.width( handleHelper.width() );
+    })
+    .mouseup(function() {
+      scrollbar.width( "100%" );
+    })
+    .append( "<span class='ui-icon ui-icon-grip-dotted-vertical'></span>" )
+    .wrap( "<div class='ui-handle-helper-parent'></div>" ).parent();
+ 
+    
+    scrollPane.css( "overflow", "hidden" );
+ 
+  
+    function sizeScrollbar() {
+      var remainder = scrollContent.width() - scrollPane.width();
+      var proportion = remainder / scrollContent.width();
+      var handleSize = scrollPane.width() - ( proportion * scrollPane.width() );
+      scrollbar.find( ".ui-slider-handle" ).css({
+        width: handleSize,
+        "margin-left": -handleSize / 2
+      });
+      handleHelper.width( "" ).width( scrollbar.width() - handleSize );
+    }
+ 
+    
+    function resetValue() {
+      var remainder = scrollPane.width() - scrollContent.width();
+      var leftVal = scrollContent.css( "margin-left" ) === "auto" ? 0 :
+        parseInt( scrollContent.css( "margin-left" ) );
+      var percentage = Math.round( leftVal / remainder * 100 );
+      scrollbar.slider( "value", percentage );
+    }
+ 
+    
+    function reflowContent() {
+        var showing = scrollContent.width() + parseInt( scrollContent.css( "margin-left" ), 10 );
+        var gap = scrollPane.width() - showing;
+        if ( gap > 0 ) {
+          scrollContent.css( "margin-left", parseInt( scrollContent.css( "margin-left" ), 10 ) + gap );
+        }
+    }
+ 
+   
+    $( window ).resize(function() {
+      resetValue();
+      sizeScrollbar();
+      reflowContent();
+    });
+  
+    setTimeout( sizeScrollbar, 10 );
+  });
+  </script>
 </head>
 
 <body>
@@ -136,115 +136,49 @@
 
 	</div>
 
-	<div class="full_box1">
+	<div class="full_box1" style="background-color: white">
 		<div class="full_box4">
 			<p class="space"></p>
 			<div class="title_brand">브랜드
-				<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.15">BRAND</span>
+				<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.7">BRAND</span>
 			</div>
 			<div style="padding:10px"></div>
 			<div class="line"></div>
 			<p class="space"></p>
+
+
+			<div class="space1"></div>
+		
 			<div class="container">
 				<div class="row">
-					<div class="col-md-1"></div>
-					<div class="col-md-3">
-						<img src="logo-05.png" width="260px" height="230px" style="margin-left:-3%">
+					<div class="col-md-6">
+						<img src="logo_blue_small2.png">
+						<div class="space"></div>
+						<div class="space1"></div>
+						<div class="main_title">빅데이터 분석가 과정</div>
+						<div class="space1"></div>
+						<div class="main_intro">
+							<strong style="font-size:20px">데잇걸즈</strong>는 데이터+IT에 전문성이 있는 여성을 의미하는 브랜드입니다.<br>
+							과학기술정보통신부와 한국정보화진흥원이 주관하고 뉴로어소시에이츠가 운영하며,<br>
+							여성인재 육성 의지와 뉴로어소시에이츠의 데이터 교육 프로그램 운영 경험을 한데 모아<br>
+							기획하고 운영된 프로그램입니다.
+						</div>
 					</div>
-					<div class="col-md-8" style="padding-left:7%">
-						<p style="font-size:2.2em; color:#3e80b8">빅데이터 분석가 과정</p>
-						<p style="padding-bottom: 30px"></p>
-						<p id="brand">데잇걸즈는 데이터+IT에 전문성이 있는 여성을 의미하는 브랜드입니다.
-							<br> 과학기술정보통신부와 한국정보화진흥원이 주관하고 뉴로어소시에이츠가 운영하며,
-							<br> 여성인재 육성 의지와 뉴로어소시에이츠의 데이터 교육 프로그램 운영 경험을 한데 모아
-							<br>기획하고 운영된 프로그램입니다.
-						</p>
-					</div>
-				</div>
-			</div>
-			<p class="space"></p>
-			<div class="test">
-				<div class="container" style="margin-left:-2%">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-								<div class="mainflip">
-									<div class="frontside">
-										<div class="card" style="width:14em; border:none; border-radius:0">
-											<img class="card-img-top img- fluid" src="card01.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-									<div class="backside">
-										<div class="card" style="width:14em; border-radius:0">
-											<img class="card-img-top img- fluid" src="card_back01.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-3">
-							<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-								<div class="mainflip">
-									<div class="frontside">
-										<div class="card" style="width:14em; border:none; border-radius:0">
-											<img class="card-img-top img- fluid" src="card02.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-									<div class="backside">
-										<div class="card" style="width:14em; border-radius:0">
-											<img class="card-img-top img- fluid" src="card_back02.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-3">
-							<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-								<div class="mainflip">
-									<div class="frontside">
-										<div class="card" style="width:14em; border:none; border-radius:0">
-											<img class="card-img-top img- fluid" src="card03.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-									<div class="backside">
-										<div class="card" style="width:14em; border-radius:0">
-											<img class="card-img-top img- fluid" src="card_back03.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-3">
-							<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-								<div class="mainflip">
-									<div class="frontside">
-										<div class="card" style="width:14em; border:none; border-radius:0">
-											<img class="card-img-top img- fluid" src="card04.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-									<div class="backside">
-										<div class="card" style="width:14em; border-radius:0">
-											<img class="card-img-top img- fluid" src="card_back04.png" alt="card image" style="border-radius:0">
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
+					<div class="col-md-6">
+						<img src="main_data_logo.png" class="main_data_logo">
 					</div>
 				</div>
 			</div>
+			
 		</div>
 		<p class="space"></p>
 	</div>
+
+	<div class="full_box1">
 	<div class="full_box4">
 		<p class="space"></p>
 		<div class="title_process">교육과정
-			<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.45">PROCESS</span>
+			<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.15">PROCESS</span>
 		</div>
 		<div style="padding:10px"></div>
 		<div class="line" style="opacity:0.95"></div>
@@ -253,11 +187,11 @@
 		<p class="process_introduce" align="center">
 			4차 산업혁명이라는 새로운 시대에 초점이 맞춰진 인재 프로그램으로 데이터에 대한 지식과 IT의 전문성을
 			<br> 가진 여성으로 거듭나는 가치에 초점이 맞춰진
-			<span style="font-size:1.3em; color:#3177c4; font-weight:500">여성 인재 양성</span>을 목표로 하고 있습니다.
+			<span style="font-size:1.4em; color:#63aad9; font-weight:500">여성 인재 양성</span>을 목표로 하고 있습니다.
 		</p>
 	</div>
 
-	</div>
+
 
 	<p class="space"></p>
 
@@ -269,7 +203,7 @@
 				<img src="icon_digital.png" class="icon_process_digital">
 				<div>
 					<p class="space1"></p>
-					<p style="color: #595857; font-size: 15px; text-align:center">
+					<p style="color: #f4f4f4; font-size: 14px; text-align:center; font-weight: 100">
 						<br>
 						<span class="icon_title">Digital</span>
 						<br>
@@ -284,7 +218,7 @@
 				<div>
 					<p style="padding-top:1px"></p>
 					<p class="space1"></p>
-					<p style="color: #595857; font-size: 15px">
+					<p style="color: #f4f4f4; font-size: 14px; font-weight: 100">
 						<br>
 						<span class="icon_title">Data</span>
 						<br>
@@ -297,7 +231,7 @@
 				<div>
 					<p style="margin-top:-1px"></p>
 					<p class="space1"></p>
-					<p style="color: #595857; font-size: 15px">
+					<p style="color: #f4f4f4; font-size: 14px; font-weight: 100">
 						<br>
 						<span class="icon_title">IT</span>
 						<br>
@@ -311,37 +245,84 @@
 
 
 	<p class="space"></p>
-	<p class="space"></p>
-	</div>
-
-	<div class="background" align="center" style="background-image:url('background_img.png')">
-		<div class="container">
+	<p class="space1"></p>
+	
+	<div class="test">
+		<div class="container" style="margin-left:-2%">
 			<div class="row">
-				<div class="col-md-1"></div>
-				<div class="col-md-2">
-					<p class="data_title">데이터 기획</p>
-					<p class="data_inside">Data Planning</p>
+				<div class="col-md-3">
+					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card" style="width:14em; border:none; border-radius:0">
+									<img class="card-img-top img- fluid" src="card01.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card" style="width:14em; border-radius:0">
+									<img class="card-img-top img- fluid" src="card_back01.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-2">
-					<p class="data_title">데이터 분석</p>
-					<p class="data_inside">Data Analysis</p>
+
+				<div class="col-md-3">
+					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card" style="width:14em; border:none; border-radius:0">
+									<img class="card-img-top img- fluid" src="card02.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card" style="width:14em; border-radius:0">
+									<img class="card-img-top img- fluid" src="card_back02.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-2">
-					<p class="data_title">머신러닝&딥러닝</p>
-					<p class="data_inside">Machine Learning<br>& Deep Learning</p>
+
+				<div class="col-md-3">
+					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card" style="width:14em; border:none; border-radius:0">
+									<img class="card-img-top img- fluid" src="card03.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card" style="width:14em; border-radius:0">
+									<img class="card-img-top img- fluid" src="card_back03.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-2">
-					<p class="data_title">데이터 시각화</p>
-					<p class="data_inside">Data Visualization</p>
+
+				<div class="col-md-3">
+					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card" style="width:14em; border:none; border-radius:0">
+									<img class="card-img-top img- fluid" src="card04.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card" style="width:14em; border-radius:0">
+									<img class="card-img-top img- fluid" src="card_back04.png" alt="card image" style="border-radius:0">
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="col-md-2">
-					<p class="data_title">프로젝트</p>
-					<p class="data_inside">Project</p>
-				</div>
+<div class="space1"></div>
+
 			</div>
 		</div>
 	</div>
-
+</div>
 	<div class="full_box4">
 		<p class="space"></p>
 		<p style="padding-top: 60px"></p>
@@ -406,9 +387,9 @@
 	</div>
 	
 	<div align="right">
-		<button onclick="document.getElementById('id01').style.display='block'" style="background-color:transparent; outline:none; text-decoration:underline; font-size:20px">교육일정 보기</button>
+		<button onclick="document.getElementById('id01').style.display='block'" style="background-color:transparent; outline:none; text-decoration:underline; font-size:20px; color: #182231">교육일정 보기</button>
 		<div id="id01" style="display:none">
-			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright">x</span>
+			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright" style="color: #182231; font-size:45px; margin-right: 15px; cursor:pointer">x</span>
 		<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			<div class="scroll-content" style="border:none; background-color:transparent">
 			  <div class="scroll-content-item ui-widget-header" style="width:381px"><img src="schedule/schedule_8.4.png" width="381px" height="410px"></div>
