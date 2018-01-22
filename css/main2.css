@@ -707,6 +707,7 @@ max-width: 1920px;
 
 	.teacher_box {
 		padding-left: 17%;
+		text-align: left;
 	}
 
 	.teacher_photo {
