@@ -18,12 +18,13 @@
 /* Reset */
   
 .main_data_logo {
-	width: 100%;
+	width: 80%;
+	height: 100%;
 }
 
 .main_title {
 	font-size: 30px;
-	color: #3177c4;
+	color: #182231;
 	opacity: 0.7;
 }
 
