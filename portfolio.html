@@ -23,26 +23,15 @@
 </head>
 
 <body>
-	<nav id="navi">
-		<ul>
-			<li>
-				<a href="index.html" style="float:left; padding-top:0; margin-top:4px; margin-bottom:-4px">
-					<img src="logo_small.png" align="left" class="logo_main" style="padding:0">
+	<nav id="navi_id" class="navi_class" align="right">
+				<a href="index.html" style="float:left; padding-top:0; padding-bottom:0" class="active">
+					<img src="logo_small.png" align="left" class="logo_main" style="padding:0; margin-top:4px; margin-bottom:-4px">
 				</a>
-			</li>
-			<li>
 				<a href="introduce.html">Introduce</a>
-			</li>
-			<li>
 				<a href="people.html">People</a>
-			</li>
-			<li>
 				<a href="#" class="nav_portfolio nav_portfolio0">Portfolio</a>
-			</li>
-			<li style="margin-right:1%">
 				<a href="contacts.html">Contacts</a>
-			</li>
-		</ul>
+				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</nav>
 
 	<p class="space1"></p>
@@ -143,6 +132,16 @@
 			</div>
 		</div>
 	</footer>
+	<script>
+			function myFunction() {
+				var x = document.getElementById("navi_id");
+				if (x.className === "navi_class") {
+					x.className += " responsive";
+				} else {
+					x.className = "navi_class";
+				}
+			}
+			</script>
 </body>
 
 </html>

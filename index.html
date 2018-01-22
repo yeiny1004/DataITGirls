@@ -10,6 +10,7 @@
     <link href="css/half-slider.css" rel="stylesheet">
 
     <body>
+      <!--
         <nav id="navi">
             <ul>
                 <li>
@@ -28,7 +29,18 @@
                     <a href="contacts.html" class="nav_contacts">Contacts</a>
                 </li>
             </ul>
+        </nav>  -->
+        <nav id="navi_id" class="navi_class" align="right">
+          	<a href="#" style="float:left; padding-top:0; padding-bottom:15px"  class="active">
+                    <img src="logo_small.png" align="left" class="logo_main" style="padding:0; margin-top:5px">
+                 </a>   
+                    <a href="introduce.html" class="nav_introduce">Introduce</a>
+                    <a href="people.html" class="nav_people">People</a>
+                    <a href="portfolio.html" class="nav_portfolio">Portfolio</a>
+                    <a href="contacts.html" class="nav_contacts">Contacts</a>
+                    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
         </nav>
+
 
         
  
@@ -97,7 +109,16 @@
          
 
 
-
+                <script>
+                    function myFunction() {
+                      var x = document.getElementById("navi_id");
+                      if (x.className === "navi_class") {
+                        x.className += " responsive";
+                      } else {
+                        x.className = "navi_class";
+                      }
+                    }
+                    </script>
               
                <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>

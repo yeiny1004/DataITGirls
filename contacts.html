@@ -53,25 +53,15 @@
 </head>
 
 <body onload="initialize()">
-	<nav id="navi">
-		<ul>
-			<li>
-				<a href="index.html" style="float:left; padding-top:0; margin-top:4px; margin-bottom:-4px">
-					<img src="logo_small.png" align="left" class="logo_main" style="padding:0">
+	<nav id="navi_id" class="navi_class" align="right">
+				<a href="index.html" style="float:left; padding-top:0; padding-bottom:0" class="active">
+					<img src="logo_small.png" align="left" class="logo_main" style="padding:0; margin-top:4px; margin-bottom:-4px">
 				</a>
-				<li>
 					<a href="introduce.html">Introduce</a>
-				</li>
-				<li>
 					<a href="people.html">People</a>
-				</li>
-				<li>
 					<a href="portfolio.html">Portfolio</a>
-				</li>
-				<li style="margin-right:1%">
 					<a href="#" class="nav_contacts nav_contacts0">Contacts</a>
-				</li>
-		</ul>
+					<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</nav>
 
 	<p class="space1"></p>
@@ -158,7 +148,16 @@
 
 	<!-- Scripts -->
 
-
+	<script>
+			function myFunction() {
+				var x = document.getElementById("navi_id");
+				if (x.className === "navi_class") {
+					x.className += " responsive";
+				} else {
+					x.className = "navi_class";
+				}
+			}
+			</script>
 	<script src="js/jquery.min.js"></script>
 	<!--
 	<script src="js/jquery.dropotron.min.js"></script>
