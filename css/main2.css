@@ -402,7 +402,8 @@ max-width: 1920px;
 
 	.story_border {
 		background-color: white;
-		width: 600px;
+		/*width: 600px;*/
+		width: 50%;
 		height: 593px;
 		margin: auto ;
 		transform: scale(1);
@@ -450,8 +451,6 @@ max-width: 1920px;
 	.story_img {
 		padding-left: 3px;
 		width: 100%;
-		
-		
 	}
 
 	#science {
