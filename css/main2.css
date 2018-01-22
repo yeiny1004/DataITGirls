@@ -403,8 +403,9 @@ max-width: 1920px;
 	.story_border {
 		background-color: white;
 		/*width: 600px;*/
-		width: 50%;
-		height: 593px;
+		width: 60%;
+		/*height: 593px;*/
+		height: 60%;
 		margin: auto ;
 		transform: scale(1);
 		-webkit-transform: scale(1);
