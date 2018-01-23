@@ -36,19 +36,19 @@
 			var infowindow = new google.maps.InfoWindow(
 				{
 					content: "<h1>뉴로어소시에이츠</h1>",
-					maxWidth: 300
+					maxWidth: 1000
 				}
 			);
 			google.maps.event.addListener(marker, 'click', function () {
 				infowindow.open(map, marker);
 			});
 		} 
+
 	</script>
 
 
 
 
-	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	<script src="javascript.js"></script>
 </head>
 
@@ -76,10 +76,13 @@
 		<p class="space"></p>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8" style="padding-left:6%">
-					<div id="map_canvas"></div>
+				<div class="col-md-8 col-sm-12">
+					<!-- <div id="map_canvas"></div> -->
+					<div class="map">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.566840370613!2d126.98513371537622!3d37.56526793195844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e576de23b9%3A0x7bb16b78bac7b296!2sWeWork+Euljiro!5e0!3m2!1sen!2skr!4v1516673961285" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>"
+					</div>
 				</div>
-				<div class="col-md-4" style="padding-left:5%">
+				<div class="col-md-4 col-sm-12" style="padding-left:5%">
 					<p class="contacts">페이스북
 						<br>
 						<a href="https://www.facebook.com/dataitgirls/" class="contacts_address" target="_blank">https://www.facebook.com/dataitgirls/</a>
