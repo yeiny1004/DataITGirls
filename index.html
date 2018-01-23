@@ -81,7 +81,7 @@
    
 
         
-                    <div class="over"><img src="home_banner3.png" width="40%"></div>
+                    <div id="over"><img src="home_banner3.png" width="40%"></div>
                   </div>
 
          
@@ -114,11 +114,15 @@
                       var x = document.getElementById("navi_id");
                       if (x.className === "navi_class") {
                         x.className += " responsive";
+                        document.getElementById("over").style.top = "50%";
                       } else {
                         x.className = "navi_class";
+                        document.getElementById("over").style.top = "25%";
                       }
+                    
                     }
                     </script>
+                    
               
                <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
