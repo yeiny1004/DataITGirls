@@ -980,6 +980,15 @@ max-width: 1920px;
 	}
 
 
+	@media screen and (max-width: 735px) {
+		.swiper-button-next{
+			position:fixed;
+		}
+		.swiper-button-prev{
+			position:fixed;
+		}
+	}
+
 
 
 	.nav_introduce0:after, .nav_introduce:hover::after {
