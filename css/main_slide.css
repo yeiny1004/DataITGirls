@@ -1842,6 +1842,9 @@ body {
     border-bottom-color: transparent;
 }
 
+.navi_class a:hover {
+	text-decoration: none;
+}
 
 
 

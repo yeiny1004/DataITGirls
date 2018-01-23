@@ -562,6 +562,7 @@ max-width: 1920px;
 	}
 
 	.epi_box {
+		padding-top: 7%;
 		border: solid 1px rgb(168, 164, 164);
 		height: 500px;
 	}
@@ -956,7 +957,9 @@ max-width: 1920px;
 	  
 	  
 	
-
+.navi_class a:hover {
+	text-decoration: none;
+}
 	
 	#nav_id a {
 		font-size: 18px;
