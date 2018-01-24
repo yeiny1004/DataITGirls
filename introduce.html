@@ -26,7 +26,7 @@
 
 	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 	<script src="javascript.js"></script>
-
+<!--
 	<script>
   $(function() {
   
@@ -99,6 +99,103 @@
   
     setTimeout( sizeScrollbar, 10 );
   });
+  </script>   -->
+  <script>
+	  // Modified from http://jqueryui.com/demos/slider/#side-scroll
+$(function() {
+    //scrollpane parts
+    var scrollSpeed = 150, // time in ms to delay (smaller is faster)
+        scrollPane = $(".scroll-pane"),
+        scrollContent = $(".scroll-content"),
+        repeat, p = scrollPane.width(),
+        c = scrollContent.width(),
+        iw = $(".scroll-content-item").outerWidth(true),
+
+        // repeat scroll while holding down button
+        repeater = function(b) {
+            scrollContent.css("margin-left", function(i, v) {
+                var v = parseInt(v, 10) + (b ? iw : -iw);
+                v = v < -c + p ? -c + p : v > 0 ? 0 : v;
+                return v + 'px';
+            });
+            resetValue();
+            repeat = setTimeout(function() {
+                repeater(b);
+            }, scrollSpeed);
+        };
+
+    // make buttons
+    scrollPane.find('button').button().bind('mousedown', function() {
+        repeater($(this).is('.left'));
+    }).bind('mouseup mouseleave', function() {
+        clearTimeout(repeat);
+    });
+
+    //build slider
+    var scrollbar = $(".scroll-bar").slider({
+        slide: function(event, ui) {
+            if (c > p) {
+                scrollContent.css("margin-left", Math.round(
+                ui.value / 100 * (p - c)) + "px");
+            } else {
+                scrollContent.css("margin-left", 0);
+            }
+        }
+    });
+
+    //append icon to handle
+    var handleHelper = scrollbar.find(".ui-slider-handle").mousedown(function() {
+        scrollbar.width(handleHelper.width());
+    }).mouseup(function() {
+        scrollbar.width("100%");
+    }).append("<span class='ui-icon ui-icon-grip-dotted-vertical'></span>").wrap("<div class='ui-handle-helper-parent'></div>").parent();
+
+    //change overflow to hidden now that slider handles the scrolling
+    scrollPane.css("overflow", "hidden");
+
+    //size scrollbar and handle proportionally to scroll distance
+
+    function sizeScrollbar() {
+        var remainder = c - p;
+        var proportion = remainder / c;
+        var handleSize = p - (proportion * p);
+        scrollbar.find(".ui-slider-handle").css({
+            width: handleSize,
+            "margin-left": -handleSize / 2
+        });
+        handleHelper.width("").width(scrollbar.width() - handleSize);
+    }
+
+    //reset slider value based on scroll content position
+
+    function resetValue() {
+        var remainder = p - c;
+        var leftVal = scrollContent.css("margin-left") === "auto" ? 0 : parseInt(scrollContent.css("margin-left"));
+        var percentage = Math.round(leftVal / remainder * 100);
+        scrollbar.slider("value", percentage);
+    }
+
+    //if the slider is 100% and window gets larger, reveal content
+
+    function reflowContent() {
+        var showing = c + parseInt(scrollContent.css("margin-left"), 10);
+        var gap = p - showing;
+        if (gap > 0) {
+            scrollContent.css("margin-left", parseInt(scrollContent.css("margin-left"), 10) + gap);
+        }
+    }
+
+    //change handle position on window resize
+    $(window).resize(function() {
+        p = scrollPane.width();
+        c = scrollContent.width();
+        resetValue();
+        sizeScrollbar();
+        reflowContent();
+    });
+    //init scrollbar size
+    setTimeout(sizeScrollbar, 10); //safari wants a timeout
+});
   </script>
 </head>
 
@@ -432,11 +529,15 @@
 			  <div class="scroll-content-item ui-widget-header" style="width:318px"><img src="schedule/schedule_12.1.png" width="318px" height="410px"></div>
 			  <div class="scroll-content-item ui-widget-header" style="width:318px"><img src="schedule/schedule_12.2.png" width="318px" height="410px"></div>
 			  <div class="scroll-content-item ui-widget-header" style="width:381px"><img src="schedule/schedule_12.3.png" width="381px" height="410px"></div>
-			 
 			</div>
-			<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+			
+    <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+        <div class="scroll-bar"></div>
+    </div>
+  
+			<!--<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			  <div class="scroll-bar"></div>
-			</div> 
+			</div> -->
 		  </div>
 		</div>
 	</div>  
@@ -586,7 +687,103 @@
 		</div>
 	</footer>
 
-
+	<script>
+			// Modified from http://jqueryui.com/demos/slider/#side-scroll
+	  $(function() {
+		  //scrollpane parts
+		  var scrollSpeed = 150, // time in ms to delay (smaller is faster)
+			  scrollPane = $(".scroll-pane"),
+			  scrollContent = $(".scroll-content"),
+			  repeat, p = scrollPane.width(),
+			  c = scrollContent.width(),
+			  iw = $(".scroll-content-item").outerWidth(true),
+	  
+			  // repeat scroll while holding down button
+			  repeater = function(b) {
+				  scrollContent.css("margin-left", function(i, v) {
+					  var v = parseInt(v, 10) + (b ? iw : -iw);
+					  v = v < -c + p ? -c + p : v > 0 ? 0 : v;
+					  return v + 'px';
+				  });
+				  resetValue();
+				  repeat = setTimeout(function() {
+					  repeater(b);
+				  }, scrollSpeed);
+			  };
+	  
+		  // make buttons
+		  scrollPane.find('button').button().bind('mousedown', function() {
+			  repeater($(this).is('.left'));
+		  }).bind('mouseup mouseleave', function() {
+			  clearTimeout(repeat);
+		  });
+	  
+		  //build slider
+		  var scrollbar = $(".scroll-bar").slider({
+			  slide: function(event, ui) {
+				  if (c > p) {
+					  scrollContent.css("margin-left", Math.round(
+					  ui.value / 100 * (p - c)) + "px");
+				  } else {
+					  scrollContent.css("margin-left", 0);
+				  }
+			  }
+		  });
+	  
+		  //append icon to handle
+		  var handleHelper = scrollbar.find(".ui-slider-handle").mousedown(function() {
+			  scrollbar.width(handleHelper.width());
+		  }).mouseup(function() {
+			  scrollbar.width("100%");
+		  }).append("<span class='ui-icon ui-icon-grip-dotted-vertical'></span>").wrap("<div class='ui-handle-helper-parent'></div>").parent();
+	  
+		  //change overflow to hidden now that slider handles the scrolling
+		  scrollPane.css("overflow", "hidden");
+	  
+		  //size scrollbar and handle proportionally to scroll distance
+	  
+		  function sizeScrollbar() {
+			  var remainder = c - p;
+			  var proportion = remainder / c;
+			  var handleSize = p - (proportion * p);
+			  scrollbar.find(".ui-slider-handle").css({
+				  width: handleSize,
+				  "margin-left": -handleSize / 2
+			  });
+			  handleHelper.width("").width(scrollbar.width() - handleSize);
+		  }
+	  
+		  //reset slider value based on scroll content position
+	  
+		  function resetValue() {
+			  var remainder = p - c;
+			  var leftVal = scrollContent.css("margin-left") === "auto" ? 0 : parseInt(scrollContent.css("margin-left"));
+			  var percentage = Math.round(leftVal / remainder * 100);
+			  scrollbar.slider("value", percentage);
+		  }
+	  
+		  //if the slider is 100% and window gets larger, reveal content
+	  
+		  function reflowContent() {
+			  var showing = c + parseInt(scrollContent.css("margin-left"), 10);
+			  var gap = p - showing;
+			  if (gap > 0) {
+				  scrollContent.css("margin-left", parseInt(scrollContent.css("margin-left"), 10) + gap);
+			  }
+		  }
+	  
+		  //change handle position on window resize
+		  $(window).resize(function() {
+			  p = scrollPane.width();
+			  c = scrollContent.width();
+			  resetValue();
+			  sizeScrollbar();
+			  reflowContent();
+		  });
+		  //init scrollbar size
+		  setTimeout(sizeScrollbar, 10); //safari wants a timeout
+	  });
+		</script>
 
 	
 
