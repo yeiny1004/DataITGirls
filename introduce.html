@@ -17,16 +17,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	 crossorigin="anonymous">
 
-<!--
+	<!--
 <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css"> -->
-  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="jquery-ui.min.js"></script>
-  <!-- <link rel="stylesheet" href="jqueryui/style.css"> -->
-	
+	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<!-- <link rel="stylesheet" href="jqueryui/style.css"> -->
+
 
 	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
 	<script src="javascript.js"></script>
-<!--
+	<!--
 	<script>
   $(function() {
   
@@ -100,103 +100,134 @@
     setTimeout( sizeScrollbar, 10 );
   });
   </script>   -->
-  <script>
-	  // Modified from http://jqueryui.com/demos/slider/#side-scroll
-$(function() {
-    //scrollpane parts
-    var scrollSpeed = 150, // time in ms to delay (smaller is faster)
-        scrollPane = $(".scroll-pane"),
-        scrollContent = $(".scroll-content"),
-        repeat, p = scrollPane.width(),
-        c = scrollContent.width(),
-        iw = $(".scroll-content-item").outerWidth(true),
+	<script>
+		// Modified from http://jqueryui.com/demos/slider/#side-scroll
+		$(function () {
+			//scrollpane parts
+			var scrollSpeed = 150, // time in ms to delay (smaller is faster)
+				scrollPane = $(".scroll-pane"),
+				scrollContent = $(".scroll-content"),
+				repeat, p = scrollPane.width(),
+				c = scrollContent.width(),
+				iw = $(".scroll-content-item").outerWidth(true),
 
-        // repeat scroll while holding down button
-        repeater = function(b) {
-            scrollContent.css("margin-left", function(i, v) {
-                var v = parseInt(v, 10) + (b ? iw : -iw);
-                v = v < -c + p ? -c + p : v > 0 ? 0 : v;
-                return v + 'px';
-            });
-            resetValue();
-            repeat = setTimeout(function() {
-                repeater(b);
-            }, scrollSpeed);
-        };
+				// repeat scroll while holding down button
+				repeater = function (b) {
+					scrollContent.css("margin-left", function (i, v) {
+						var v = parseInt(v, 10) + (b ? iw : -iw);
+						v = v < -c + p ? -c + p : v > 0 ? 0 : v;
+						return v + 'px';
+					});
+					resetValue();
+					repeat = setTimeout(function () {
+						repeater(b);
+					}, scrollSpeed);
+				};
 
-    // make buttons
-    scrollPane.find('button').button().bind('mousedown', function() {
-        repeater($(this).is('.left'));
-    }).bind('mouseup mouseleave', function() {
-        clearTimeout(repeat);
+			// make buttons
+			scrollPane.find('button').button().bind('mousedown', function () {
+				repeater($(this).is('.left'));
+			}).bind('mouseup mouseleave', function () {
+				clearTimeout(repeat);
+			});
+
+			//build slider
+			var scrollbar = $(".scroll-bar").slider({
+				slide: function (event, ui) {
+					if (c > p) {
+						scrollContent.css("margin-left", Math.round(
+							ui.value / 100 * (p - c)) + "px");
+					} else {
+						scrollContent.css("margin-left", 0);
+					}
+				}
+			});
+
+			//append icon to handle
+			var handleHelper = scrollbar.find(".ui-slider-handle").mousedown(function () {
+				scrollbar.width(handleHelper.width());
+			}).mouseup(function () {
+				scrollbar.width("100%");
+			}).append("<span class='ui-icon ui-icon-grip-dotted-vertical'></span>").wrap("<div class='ui-handle-helper-parent'></div>").parent();
+
+			//change overflow to hidden now that slider handles the scrolling
+			scrollPane.css("overflow", "hidden");
+
+			//size scrollbar and handle proportionally to scroll distance
+
+			function sizeScrollbar() {
+				var remainder = c - p;
+				var proportion = remainder / c;
+				var handleSize = p - (proportion * p);
+				scrollbar.find(".ui-slider-handle").css({
+					width: handleSize,
+					"margin-left": -handleSize / 2
+				});
+				handleHelper.width("").width(scrollbar.width() - handleSize);
+			}
+
+			//reset slider value based on scroll content position
+
+			function resetValue() {
+				var remainder = p - c;
+				var leftVal = scrollContent.css("margin-left") === "auto" ? 0 : parseInt(scrollContent.css("margin-left"));
+				var percentage = Math.round(leftVal / remainder * 100);
+				scrollbar.slider("value", percentage);
+			}
+
+			//if the slider is 100% and window gets larger, reveal content
+
+			function reflowContent() {
+				var showing = c + parseInt(scrollContent.css("margin-left"), 10);
+				var gap = p - showing;
+				if (gap > 0) {
+					scrollContent.css("margin-left", parseInt(scrollContent.css("margin-left"), 10) + gap);
+				}
+			}
+
+			//change handle position on window resize
+			$(window).resize(function () {
+				p = scrollPane.width();
+				c = scrollContent.width();
+				resetValue();
+				sizeScrollbar();
+				reflowContent();
+			});
+			//init scrollbar size
+			setTimeout(sizeScrollbar, 10); //safari wants a timeout
+		});
+	</script>
+<script>
+	$(window).on("load",function() {
+  $(window).scroll(function() {
+    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+    $(".fade").each(function() {
+      /* Check the location of each desired element */
+      var objectBottom = $(this).offset().top + $(this).outerHeight();
+      
+      /* If the element is completely within bounds of the window, fade it in */
+      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+        if ($(this).css("opacity")==0) {$(this).fadeTo(1000,1);}
+      } else { //object goes out of view (scrolling up)
+        if ($(this).css("opacity")==1) {$(this).fadeTo(1000,0);}
+      }
     });
-
-    //build slider
-    var scrollbar = $(".scroll-bar").slider({
-        slide: function(event, ui) {
-            if (c > p) {
-                scrollContent.css("margin-left", Math.round(
-                ui.value / 100 * (p - c)) + "px");
-            } else {
-                scrollContent.css("margin-left", 0);
-            }
-        }
-    });
-
-    //append icon to handle
-    var handleHelper = scrollbar.find(".ui-slider-handle").mousedown(function() {
-        scrollbar.width(handleHelper.width());
-    }).mouseup(function() {
-        scrollbar.width("100%");
-    }).append("<span class='ui-icon ui-icon-grip-dotted-vertical'></span>").wrap("<div class='ui-handle-helper-parent'></div>").parent();
-
-    //change overflow to hidden now that slider handles the scrolling
-    scrollPane.css("overflow", "hidden");
-
-    //size scrollbar and handle proportionally to scroll distance
-
-    function sizeScrollbar() {
-        var remainder = c - p;
-        var proportion = remainder / c;
-        var handleSize = p - (proportion * p);
-        scrollbar.find(".ui-slider-handle").css({
-            width: handleSize,
-            "margin-left": -handleSize / 2
-        });
-        handleHelper.width("").width(scrollbar.width() - handleSize);
-    }
-
-    //reset slider value based on scroll content position
-
-    function resetValue() {
-        var remainder = p - c;
-        var leftVal = scrollContent.css("margin-left") === "auto" ? 0 : parseInt(scrollContent.css("margin-left"));
-        var percentage = Math.round(leftVal / remainder * 100);
-        scrollbar.slider("value", percentage);
-    }
-
-    //if the slider is 100% and window gets larger, reveal content
-
-    function reflowContent() {
-        var showing = c + parseInt(scrollContent.css("margin-left"), 10);
-        var gap = p - showing;
-        if (gap > 0) {
-            scrollContent.css("margin-left", parseInt(scrollContent.css("margin-left"), 10) + gap);
-        }
-    }
-
-    //change handle position on window resize
-    $(window).resize(function() {
-        p = scrollPane.width();
-        c = scrollContent.width();
-        resetValue();
-        sizeScrollbar();
-        reflowContent();
-    });
-    //init scrollbar size
-    setTimeout(sizeScrollbar, 10); //safari wants a timeout
+  }).scroll(); //invoke scroll-handler on page-load
 });
-  </script>
+</script>
+
+<script>
+	var myElement = $('.js_my-element');
+
+$(window).on('scroll', function() {
+    var st = $(this).scrollTop();
+    myElement.css({
+        'opacity' : 1 - st/600
+    });
+});
+</script>
+
+
 </head>
 
 <body>
@@ -225,16 +256,16 @@ $(function() {
 		</ul>
 	</nav>  -->
 
-	<nav id="navi_id" class="navi_class" align="right">  
-					<a href="index.html" style="float:left; padding-top:0; padding-bottom:0" class="active">
-						<img src="logo_small.png" align="left" class="logo_main" style="padding:0; margin-top:4px; margin-bottom:-4px">
-					</a>
-					<a href="#" class="nav_introduce nav_introduce0">Introduce</a>
-					<a href="people.html">People</a>
-					<a href="portfolio.html">Portfolio</a>
-					<a href="contacts.html">Contacts</a>
-				<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-		</nav>
+	<nav id="navi_id" class="navi_class" align="right">
+		<a href="index.html" style="float:left; padding-top:0; padding-bottom:0" class="active">
+			<img src="logo_small.png" align="left" class="logo_main" style="padding:0; margin-top:4px; margin-bottom:-4px">
+		</a>
+		<a href="#" class="nav_introduce nav_introduce0">Introduce</a>
+		<a href="people.html">People</a>
+		<a href="portfolio.html">Portfolio</a>
+		<a href="contacts.html">Contacts</a>
+		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	</nav>
 
 
 
@@ -253,9 +284,9 @@ $(function() {
 
 	<div class="full_box1" style="background-color: white">
 		<div class="full_box4">
-		
+
 			<div class="title_brand">브랜드
-				<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.7">BRAND</span>
+				<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.45">BRAND</span>
 			</div>
 			<div style="padding:10px"></div>
 			<div class="line"></div>
@@ -264,19 +295,20 @@ $(function() {
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<img src="logo_blue_small2.png" width="80%">
+						<img src="logo-55.png" width="40%">
 						<div class="space"></div>
-						<div style="padding-top: 23%"></div>
+						<div style="padding-top: 10%"></div>
 						<div style="background-color:#3177c4; width: 6%; height:5px"></div>
-						<div style="padding-top: 5%"></div>
+						<div style="padding-top: 2%"></div>
 						<div class="main_title">빅데이터 분석가 과정</div>
 						<div class="space1"></div>
 						<div class="main_intro">
-							<strong style="font-size:20px; color: black">데잇걸즈</strong>는 데이터+IT에 전문성이 있는 여성을 의미하는 브랜드입니다.<br>
-							과학기술정보통신부와 한국정보화진흥원이 주관하고 뉴로어소시에이츠가 운영하며,<br>
-							여성인재 육성 의지와 뉴로어소시에이츠의 데이터 교육 프로그램 운영 경험을 한데 모아<br>
-							기획하고 운영된 프로그램입니다.
-							<br><br>
+							<strong style="font-size:20px; color: black">데잇걸즈</strong>는 데이터+IT에 전문성이 있는 여성을 의미하는 브랜드입니다.
+							<br> 과학기술정보통신부와 한국정보화진흥원이 주관하고 뉴로어소시에이츠가 운영하며,
+							<br> 여성인재 육성 의지와 뉴로어소시에이츠의 데이터 교육 프로그램 운영 경험을 한데 모아
+							<br> 기획하고 운영된 프로그램입니다.
+							<br>
+							<br>
 						</div>
 					</div>
 					<div class="col-md-6" align="right" style="padding-top:2%">
@@ -284,166 +316,160 @@ $(function() {
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 		<p class="space"></p>
 		<p class="space1"></p>
 	</div>
 
 	<div class="full_box1">
-	<div class="full_box4">
+		<div class="full_box4">
+			<p class="space"></p>
+			<p class="space1"></p>
+			<div class="title_process">교육과정
+				<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.15">PROCESS</span>
+			</div>
+			<div style="padding:10px"></div>
+			<div class="line" style="opacity:0.95"></div>
+			<p class="space"></p>
+
+			<p class="process_introduce" align="center">
+				4차 산업혁명이라는 새로운 시대에 초점이 맞춰진 인재 프로그램으로 데이터에 대한 지식과 IT의 전문성을
+				<br> 가진 여성으로 거듭나는 가치에 초점이 맞춰진
+				<span style="font-size:1.4em; color:#63aad9; font-weight:500">여성 인재 양성</span>을 목표로 하고 있습니다.
+			</p>
+		</div>
+		<p class="space"></p>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4" align="center">
+					<img src="icon_digital.png" class="icon_process_digital">
+					<div>
+						<p class="space1"></p>
+						<p style="color: #f4f4f4; font-size: 14px; text-align:center; font-weight: 100">
+							<br>
+							<span class="icon_title">Digital</span>
+							<br>
+							<br>빠르게 변화하는 Digital 시대의
+							<br>
+							<span style="margin-left:-5px">흐름에 발빠르게 적응하는 여성</span>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4" align="center">
+					<img src="icon_data.png" class="icon_process_data">
+					<div>
+						<p style="padding-top:1px"></p>
+						<p class="space1"></p>
+						<p style="color: #f4f4f4; font-size: 14px; font-weight: 100">
+							<br>
+							<span class="icon_title">Data</span>
+							<br>
+							<br>데이터를 이용한 문제 해결과 통계를
+							<br>바탕으로 분석기술 학습에 장벽이 없는 여성</p>
+					</div>
+				</div>
+				<div class="col-md-4" align="center">
+					<img src="icon_it.png" class="icon_process_it">
+					<div>
+						<p style="margin-top:-1px"></p>
+						<p class="space1"></p>
+						<p style="color: #f4f4f4; font-size: 14px; font-weight: 100">
+							<br>
+							<span class="icon_title">IT</span>
+							<br>
+							<br>IT 컨텐츠에 대한 지식과 데이터를
+							<br>바탕으로 한 전문성을 가진 여성</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
 		<p class="space"></p>
 		<p class="space1"></p>
-		<div class="title_process">교육과정
-			<span style="padding-left:0.5em; color: #e7e7e9; opacity:0.15">PROCESS</span>
-		</div>
-		<div style="padding:10px"></div>
-		<div class="line" style="opacity:0.95"></div>
-		<p class="space"></p>
 
-		<p class="process_introduce" align="center">
-			4차 산업혁명이라는 새로운 시대에 초점이 맞춰진 인재 프로그램으로 데이터에 대한 지식과 IT의 전문성을
-			<br> 가진 여성으로 거듭나는 가치에 초점이 맞춰진
-			<span style="font-size:1.4em; color:#63aad9; font-weight:500">여성 인재 양성</span>을 목표로 하고 있습니다.
-		</p>
-	</div>
-
-
-
-	<p class="space"></p>
-
-
-
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4" align="center">
-				<img src="icon_digital.png" class="icon_process_digital">
-				<div>
-					<p class="space1"></p>
-					<p style="color: #f4f4f4; font-size: 14px; text-align:center; font-weight: 100">
-						<br>
-						<span class="icon_title">Digital</span>
-						<br>
-						<br>빠르게 변화하는 Digital 시대의
-						<br>
-						<span style="margin-left:-5px">흐름에 발빠르게 적응하는 여성</span>
-					</p>
-				</div>
-			</div>
-			<div class="col-md-4" align="center">
-				<img src="icon_data.png" class="icon_process_data">
-				<div>
-					<p style="padding-top:1px"></p>
-					<p class="space1"></p>
-					<p style="color: #f4f4f4; font-size: 14px; font-weight: 100">
-						<br>
-						<span class="icon_title">Data</span>
-						<br>
-						<br>데이터를 이용한 문제 해결과 통계를
-						<br>바탕으로 분석기술 학습에 장벽이 없는 여성</p>
-				</div>
-			</div>
-			<div class="col-md-4" align="center">
-				<img src="icon_it.png" class="icon_process_it">
-				<div>
-					<p style="margin-top:-1px"></p>
-					<p class="space1"></p>
-					<p style="color: #f4f4f4; font-size: 14px; font-weight: 100">
-						<br>
-						<span class="icon_title">IT</span>
-						<br>
-						<br>IT 컨텐츠에 대한 지식과 데이터를
-						<br>바탕으로 한 전문성을 가진 여성</p>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-
-	<p class="space"></p>
-	<p class="space1"></p>
-	
-	<div class="test">
-		<div class="container" style="margin-left:-2%">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-						<div class="mainflip">
-							<div class="frontside">
-								<div class="card" style="width:14em; border:none; border-radius:0">
-									<img class="card-img-top img- fluid" src="card01.png" alt="card image" style="border-radius:0">
+		<div class="test">
+			<div class="container" style="margin-left:-2%">
+				<div class="row">
+					<div class="col-md-3">
+						<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<div class="card" style="width:14em; border:none; border-radius:0">
+										<img class="card-img-top img- fluid" src="card01.png" alt="card image" style="border-radius:0">
+									</div>
 								</div>
-							</div>
-							<div class="backside">
-								<div class="card" style="width:14em; border-radius:0">
-									<img class="card-img-top img- fluid" src="card_back01.png" alt="card image" style="border-radius:0">
+								<div class="backside">
+									<div class="card" style="width:14em; border-radius:0">
+										<img class="card-img-top img- fluid" src="card_back01.png" alt="card image" style="border-radius:0">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-						<div class="mainflip">
-							<div class="frontside">
-								<div class="card" style="width:14em; border:none; border-radius:0">
-									<img class="card-img-top img- fluid" src="card02.png" alt="card image" style="border-radius:0">
+					<div class="col-md-3">
+						<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<div class="card" style="width:14em; border:none; border-radius:0">
+										<img class="card-img-top img- fluid" src="card02.png" alt="card image" style="border-radius:0">
+									</div>
 								</div>
-							</div>
-							<div class="backside">
-								<div class="card" style="width:14em; border-radius:0">
-									<img class="card-img-top img- fluid" src="card_back02.png" alt="card image" style="border-radius:0">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-						<div class="mainflip">
-							<div class="frontside">
-								<div class="card" style="width:14em; border:none; border-radius:0">
-									<img class="card-img-top img- fluid" src="card03.png" alt="card image" style="border-radius:0">
-								</div>
-							</div>
-							<div class="backside">
-								<div class="card" style="width:14em; border-radius:0">
-									<img class="card-img-top img- fluid" src="card_back03.png" alt="card image" style="border-radius:0">
+								<div class="backside">
+									<div class="card" style="width:14em; border-radius:0">
+										<img class="card-img-top img- fluid" src="card_back02.png" alt="card image" style="border-radius:0">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
-						<div class="mainflip">
-							<div class="frontside">
-								<div class="card" style="width:14em; border:none; border-radius:0">
-									<img class="card-img-top img- fluid" src="card04.png" alt="card image" style="border-radius:0">
+					<div class="col-md-3">
+						<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<div class="card" style="width:14em; border:none; border-radius:0">
+										<img class="card-img-top img- fluid" src="card03.png" alt="card image" style="border-radius:0">
+									</div>
 								</div>
-							</div>
-							<div class="backside">
-								<div class="card" style="width:14em; border-radius:0">
-									<img class="card-img-top img- fluid" src="card_back04.png" alt="card image" style="border-radius:0">
+								<div class="backside">
+									<div class="card" style="width:14em; border-radius:0">
+										<img class="card-img-top img- fluid" src="card_back03.png" alt="card image" style="border-radius:0">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<div class="col-md-3">
+						<div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<div class="card" style="width:14em; border:none; border-radius:0">
+										<img class="card-img-top img- fluid" src="card04.png" alt="card image" style="border-radius:0">
+									</div>
+								</div>
+								<div class="backside">
+									<div class="card" style="width:14em; border-radius:0">
+										<img class="card-img-top img- fluid" src="card_back04.png" alt="card image" style="border-radius:0">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="space1"></div>
+
+
+
+
 				</div>
-<div class="space1"></div>
-
-
-
-
 			</div>
 		</div>
+		<div class="space1"></div>
 	</div>
-	<div class="space1"></div>
-</div>
 	<div class="full_box4">
 		<p class="space"></p>
 		<p style="padding-top: 60px"></p>
@@ -475,9 +501,45 @@ $(function() {
 							<br> 빅데이터와 데이터 사이언스</p>
 					</div>
 				</div>
+				<!--
+				<div class="fade">
 				<div class="col-md-4" style="line-height:35em" align="center">
 					<img src="580h.png" width="300em" style="vertical-align:middle">
 				</div>
+				</div>  -->
+
+				<div class="col-md-4" align="center">
+					<ul class="ch-grid">
+						<li>
+							<div class="ch-item ch-img-1" style="background-image: url('580h.png'); filter:wave(strength=100,freq=4,lightstrength=2,phase=4,add=1)">
+								<div class="ch-info">
+									<h3>Education</h3>
+									<p><br>
+										Big Data<br>
+										Statistics<br>
+										Python<br>
+										Text Mining<br>
+										R<br>
+										d3.js<br>
+										Machine Learning<br>
+										Deep Learning<br>
+										Google Analytics<br>
+										Visualization<br>
+										Infographic
+									</p>
+								</div>
+							</div>
+						</li>
+						</ul>
+				</div>
+		
+
+
+
+
+
+
+
 				<div class="col-md-4" style="text-align:left; padding-left:60px">
 					<div>
 						<span class="number3">02</span>
@@ -504,46 +566,78 @@ $(function() {
 			</div>
 		</div>
 		<div class="space1"></div>
-		
+
 	</div>
-	
+
 	<div align="right">
 		<button onclick="document.getElementById('id01').style.display='block'" style="background-color:transparent; outline:none; text-decoration:underline; font-size:20px; color: #182231">교육일정 보기</button>
 		<div id="id01" style="display:none">
 			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright" style="color: #182231; font-size:45px; margin-right: 15px; cursor:pointer">x</span>
-		<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
-			<div class="scroll-content" style="border:none; background-color:transparent">
-			  <div class="scroll-content-item ui-widget-header" style="width:381px"><img src="schedule/schedule_8.4.png" width="381px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:414px"><img src="schedule/schedule_9.1.png" width="414px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:387px"><img src="schedule/schedule_9.2.png" width="387px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:431px"><img src="schedule/schedule_9.3.png" width="431px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:445px"><img src="schedule/schedule_9.4.png" width="445px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:321px"><img src="schedule/schedule_10.2.png" width="321px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:377px"><img src="schedule/schedule_10.3.png" width="377px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:423px"><img src="schedule/schedule_10.4.png" width="423px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:418px"><img src="schedule/schedule_11.1.png" width="418px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:333px"><img src="schedule/schedule_11.2.png" width="333px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:415px"><img src="schedule/schedule_11.3.png" width="415px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:440px"><img src="schedule/schedule_11.4.png" width="440px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:327px"><img src="schedule/schedule_11.5.png" width="327px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:318px"><img src="schedule/schedule_12.1.png" width="318px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:318px"><img src="schedule/schedule_12.2.png" width="318px" height="410px"></div>
-			  <div class="scroll-content-item ui-widget-header" style="width:381px"><img src="schedule/schedule_12.3.png" width="381px" height="410px"></div>
-			</div>
-			
-    <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
-        <div class="scroll-bar"></div>
-    </div>
-  
-			<!--<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+			<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+				<div class="scroll-content" style="border:none; background-color:transparent">
+					<div class="scroll-content-item ui-widget-header" style="width:381px">
+						<img src="schedule/schedule_8.4.png" width="381px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:414px">
+						<img src="schedule/schedule_9.1.png" width="414px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:387px">
+						<img src="schedule/schedule_9.2.png" width="387px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:431px">
+						<img src="schedule/schedule_9.3.png" width="431px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:445px">
+						<img src="schedule/schedule_9.4.png" width="445px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:321px">
+						<img src="schedule/schedule_10.2.png" width="321px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:377px">
+						<img src="schedule/schedule_10.3.png" width="377px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:423px">
+						<img src="schedule/schedule_10.4.png" width="423px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:418px">
+						<img src="schedule/schedule_11.1.png" width="418px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:333px">
+						<img src="schedule/schedule_11.2.png" width="333px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:415px">
+						<img src="schedule/schedule_11.3.png" width="415px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:440px">
+						<img src="schedule/schedule_11.4.png" width="440px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:327px">
+						<img src="schedule/schedule_11.5.png" width="327px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:318px">
+						<img src="schedule/schedule_12.1.png" width="318px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:318px">
+						<img src="schedule/schedule_12.2.png" width="318px" height="410px">
+					</div>
+					<div class="scroll-content-item ui-widget-header" style="width:381px">
+						<img src="schedule/schedule_12.3.png" width="381px" height="410px">
+					</div>
+				</div>
+
+				<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+					<div class="scroll-bar"></div>
+				</div>
+
+				<!--<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			  <div class="scroll-bar"></div>
 			</div> -->
-		  </div>
+			</div>
 		</div>
-	</div>  
+	</div>
 
-	
-		
+
+
 
 	<div class="full_box4">
 		<p class="space"></p>
@@ -687,116 +781,45 @@ $(function() {
 		</div>
 	</footer>
 
-	<script>
-			// Modified from http://jqueryui.com/demos/slider/#side-scroll
-	  $(function() {
-		  //scrollpane parts
-		  var scrollSpeed = 150, // time in ms to delay (smaller is faster)
-			  scrollPane = $(".scroll-pane"),
-			  scrollContent = $(".scroll-content"),
-			  repeat, p = scrollPane.width(),
-			  c = scrollContent.width(),
-			  iw = $(".scroll-content-item").outerWidth(true),
-	  
-			  // repeat scroll while holding down button
-			  repeater = function(b) {
-				  scrollContent.css("margin-left", function(i, v) {
-					  var v = parseInt(v, 10) + (b ? iw : -iw);
-					  v = v < -c + p ? -c + p : v > 0 ? 0 : v;
-					  return v + 'px';
-				  });
-				  resetValue();
-				  repeat = setTimeout(function() {
-					  repeater(b);
-				  }, scrollSpeed);
-			  };
-	  
-		  // make buttons
-		  scrollPane.find('button').button().bind('mousedown', function() {
-			  repeater($(this).is('.left'));
-		  }).bind('mouseup mouseleave', function() {
-			  clearTimeout(repeat);
-		  });
-	  
-		  //build slider
-		  var scrollbar = $(".scroll-bar").slider({
-			  slide: function(event, ui) {
-				  if (c > p) {
-					  scrollContent.css("margin-left", Math.round(
-					  ui.value / 100 * (p - c)) + "px");
-				  } else {
-					  scrollContent.css("margin-left", 0);
-				  }
-			  }
-		  });
-	  
-		  //append icon to handle
-		  var handleHelper = scrollbar.find(".ui-slider-handle").mousedown(function() {
-			  scrollbar.width(handleHelper.width());
-		  }).mouseup(function() {
-			  scrollbar.width("100%");
-		  }).append("<span class='ui-icon ui-icon-grip-dotted-vertical'></span>").wrap("<div class='ui-handle-helper-parent'></div>").parent();
-	  
-		  //change overflow to hidden now that slider handles the scrolling
-		  scrollPane.css("overflow", "hidden");
-	  
-		  //size scrollbar and handle proportionally to scroll distance
-	  
-		  function sizeScrollbar() {
-			  var remainder = c - p;
-			  var proportion = remainder / c;
-			  var handleSize = p - (proportion * p);
-			  scrollbar.find(".ui-slider-handle").css({
-				  width: handleSize,
-				  "margin-left": -handleSize / 2
-			  });
-			  handleHelper.width("").width(scrollbar.width() - handleSize);
-		  }
-	  
-		  //reset slider value based on scroll content position
-	  
-		  function resetValue() {
-			  var remainder = p - c;
-			  var leftVal = scrollContent.css("margin-left") === "auto" ? 0 : parseInt(scrollContent.css("margin-left"));
-			  var percentage = Math.round(leftVal / remainder * 100);
-			  scrollbar.slider("value", percentage);
-		  }
-	  
-		  //if the slider is 100% and window gets larger, reveal content
-	  
-		  function reflowContent() {
-			  var showing = c + parseInt(scrollContent.css("margin-left"), 10);
-			  var gap = p - showing;
-			  if (gap > 0) {
-				  scrollContent.css("margin-left", parseInt(scrollContent.css("margin-left"), 10) + gap);
-			  }
-		  }
-	  
-		  //change handle position on window resize
-		  $(window).resize(function() {
-			  p = scrollPane.width();
-			  c = scrollContent.width();
-			  resetValue();
-			  sizeScrollbar();
-			  reflowContent();
-		  });
-		  //init scrollbar size
-		  setTimeout(sizeScrollbar, 10); //safari wants a timeout
-	  });
-		</script>
-
 	
 
 	<script>
-			function myFunction() {
-				var x = document.getElementById("navi_id");
-				if (x.className === "navi_class") {
-					x.className += " responsive";
-				} else {
-					x.className = "navi_class";
-				}
-			}
+			$(document).ready(function() {
+			
+				/* Every time the window is scrolled ... */
+				$(window).scroll( function(){
+				
+					/* Check the location of each desired element */
+					$('.hideme').each( function(i){
+						
+						var bottom_of_object = $(this).position().top + $(this).outerHeight();
+						var bottom_of_window = $(window).scrollTop() + $(window).height();
+						
+						/* If the object is completely visible in the window, fade it it */
+						if( bottom_of_window > bottom_of_object ){
+							
+							$(this).animate({'opacity':'1'},1500);
+								
+						}
+						
+					}); 
+				
+				});
+				
+			});
 			</script>
+		
+
+	<script>
+		function myFunction() {
+			var x = document.getElementById("navi_id");
+			if (x.className === "navi_class") {
+				x.className += " responsive";
+			} else {
+				x.className = "navi_class";
+			}
+		}
+	</script>
 	<script src="js/javascript.js"></script>
 
 </body>
