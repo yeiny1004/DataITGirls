@@ -16,8 +16,6 @@
 
 /* Reset */
 
-  
-  
 
 
 
@@ -837,6 +835,35 @@ max-width: 1920px;
 		/*border: solid 1px rgb(168, 164, 164); */
 		width: 14em;
 		height: 22em;
+		position: relative;
+	}
+	.teacher::before {
+		position: absolute;
+		top: 0;
+		left: -75%;
+		z-index: 2;
+		display: block;
+		content: '';
+		width: 50%;
+		height: 100%;
+		background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+		background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+		-webkit-transform: skewX(-30deg);
+		transform: skewX(-30deg);
+	}
+	.teacher:hover::before {
+		-webkit-animation: shine .75s;
+		animation: shine .75s;
+	}
+	@-webkit-keyframes shine {
+		100% {
+			left: 75%;
+		}
+	}
+	@keyframes shine {
+		100% {
+			left: 75%;
+		}
 	}
 
 	.teacher_box {
@@ -907,6 +934,7 @@ max-width: 1920px;
 		padding-top: 0.9em;
 		font-weight: 200;
 	}
+
 
 	.divider2 {
 		padding-top: 1em;
