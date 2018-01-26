@@ -19,7 +19,6 @@
 
 
 
-
   
 .main_data_logo {
 	width: 88%;
@@ -242,6 +241,7 @@ max-width: 1920px;
 		-ms-transform: scale(1);
 		-o-transform: scale(1);
 		transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
+		position: relative;
 		
 	}
 	.icon_process_data {
@@ -253,7 +253,7 @@ max-width: 1920px;
 		-ms-transform: scale(1);
 		-o-transform: scale(1);
 		transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
-		
+		position: relative;
 	}
 	.icon_process_it {
 		margin-right: 15px;
@@ -265,7 +265,7 @@ max-width: 1920px;
 		-ms-transform: scale(1);
 		-o-transform: scale(1);
 		transition: all 0.3s ease-in-out;   /* 부드러운 모션을 위해 추가*/
-		
+		position: relative;
 	}
 
 	
@@ -366,9 +366,12 @@ max-width: 1920px;
 	.icon_title {
 		text-align: center;
 		text-transform: uppercase;
-		font-size: 35px;
+		font-size: 28px;
 		color: #eaeaea;
 		font-weight: 500;
+		
+		
+		
 	}
 
 	.line {
@@ -908,6 +911,7 @@ max-width: 1920px;
 			left: 75%;
 		}
 	}
+	
 
 	.teacher_box {
 		padding-left: 17%;
