@@ -123,35 +123,35 @@
 			setTimeout(sizeScrollbar, 10); //safari wants a timeout
 		});
 	</script>
-<script>
-	$(window).on("load",function() {
-  $(window).scroll(function() {
-    var windowBottom = $(this).scrollTop() + $(this).innerHeight();
-    $(".fade").each(function() {
-      /* Check the location of each desired element */
-      var objectBottom = $(this).offset().top + $(this).outerHeight();
-      
-      /* If the element is completely within bounds of the window, fade it in */
-      if (objectBottom < windowBottom) { //object comes into view (scrolling down)
-        if ($(this).css("blur")==0) {$(this).fadeTo(1000,1);}
-      } else { //object goes out of view (scrolling up)
-        if ($(this).css("blur")==1) {$(this).fadeTo(1000,0);}
-      }
-    });
-  }).scroll(); //invoke scroll-handler on page-load
-});
-</script>
+	<script>
+		$(window).on("load", function () {
+			$(window).scroll(function () {
+				var windowBottom = $(this).scrollTop() + $(this).innerHeight();
+				$(".fade").each(function () {
+					/* Check the location of each desired element */
+					var objectBottom = $(this).offset().top + $(this).outerHeight();
 
-<script>
-	var myElement = $('.js_my-element');
+					/* If the element is completely within bounds of the window, fade it in */
+					if (objectBottom < windowBottom) { //object comes into view (scrolling down)
+						if ($(this).css("blur") == 0) { $(this).fadeTo(1000, 1); }
+					} else { //object goes out of view (scrolling up)
+						if ($(this).css("blur") == 1) { $(this).fadeTo(1000, 0); }
+					}
+				});
+			}).scroll(); //invoke scroll-handler on page-load
+		});
+	</script>
 
-$(window).on('scroll', function() {
-    var st = $(this).scrollTop();
-    myElement.css({
-        'opacity' : 1 - st/600
-    });
-});
-</script>
+	<script>
+		var myElement = $('.js_my-element');
+
+		$(window).on('scroll', function () {
+			var st = $(this).scrollTop();
+			myElement.css({
+				'opacity': 1 - st / 600
+			});
+		});
+	</script>
 
 </head>
 
@@ -439,30 +439,24 @@ $(window).on('scroll', function() {
 							<div class="ch-item ch-img-1" style="background-image: url('580h.png'); filter:wave(strength=100,freq=4,lightstrength=2,phase=4,add=1)">
 								<div class="ch-info">
 									<h3>Education</h3>
-									<p><br>
-										Big Data<br>
-										Statistics<br>
-										Python<br>
-										Text Mining<br>
-										R<br>
-										d3.js<br>
-										Machine Learning<br>
-										Deep Learning<br>
-										Google Analytics<br>
-										Visualization<br>
-										Infographic
+									<p>
+										<br> Big Data
+										<br> Statistics
+										<br> Python
+										<br> Text Mining
+										<br> R
+										<br> d3.js
+										<br> Machine Learning
+										<br> Deep Learning
+										<br> Google Analytics
+										<br> Visualization
+										<br> Infographic
 									</p>
 								</div>
 							</div>
 						</li>
-						</ul>
+					</ul>
 				</div>
-		
-
-
-
-
-
 
 
 				<div class="col-md-4" style="text-align:left; padding-left:60px">
@@ -491,13 +485,12 @@ $(window).on('scroll', function() {
 			</div>
 		</div>
 		<div class="space1"></div>
-
 	</div>
-
 	<div align="right">
 		<button onclick="document.getElementById('id01').style.display='block'" style="background-color:transparent; outline:none; text-decoration:underline; font-size:20px; color: #182231">교육일정 보기</button>
 		<div id="id01" style="display:none">
 			<span onclick="this.parentElement.style.display='none'" class="w3-button w3-red w3-display-topright" style="color: #182231; font-size:45px; margin-right: 15px; cursor:pointer">x</span>
+		<div class="demo">
 			<div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 				<div class="scroll-content" style="border:none; background-color:transparent">
 					<div class="scroll-content-item ui-widget-header" style="width:381px">
@@ -554,20 +547,14 @@ $(window).on('scroll', function() {
 					<div class="scroll-bar"></div>
 				</div>
 
-				<!--<div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
-			  <div class="scroll-bar"></div>
-			</div> -->
+			</div> 
+			</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
 	<div class="full_box4">
 		<p class="space"></p>
 	</div>
-
 	<div style="background-color: rgba(240, 240, 241, 0.3)">
 		<div class="full_box4">
 			<p class="space1"></p>
@@ -579,8 +566,6 @@ $(window).on('scroll', function() {
 			<div style="padding:10px"></div>
 			<div class="line" style="opacity:0.95"></div>
 			<p class="space"></p>
-
-
 			<div class="story_border">
 				<p class="story_title">교육생 선발</p>
 				<img src="line.png" class="story_line">
@@ -640,7 +625,6 @@ $(window).on('scroll', function() {
 			<!-- </div> -->
 		</div>
 	</div>
-
 	<div class="full_box4">
 		<p class="space1"></p>
 		<p class="space1"></p>
@@ -670,7 +654,6 @@ $(window).on('scroll', function() {
 		</div>
 		<p class="space"></p>
 	</div>
-
 	<button id="top" class="top" type="button" onclick="$('html, body').stop().animate( { scrollTop : 0 },600 );" style="outline:none">
 		<img src="scroll_button.png" class="scroll_image" onmouseover="this.src='scroll_button2.png'" onmouseout="this.src='scroll_button.png'">
 	</button>
@@ -705,20 +688,15 @@ $(window).on('scroll', function() {
 			</div>
 		</div>
 	</footer>
-
-	
-
-
-		
 	<script>
-			$(window).load(function() {
-			  $('.view').display = "";  
-			  $('.view').fadeIn('slow','swing', function() {
-				 
-			  });
+		$(window).load(function () {
+			$('.view').display = "";
+			$('.view').fadeIn('slow', 'swing', function () {
+
 			});
-		
-		</script>
+		});
+
+	</script>
 	<script>
 		function myFunction() {
 			var x = document.getElementById("navi_id");
@@ -730,11 +708,11 @@ $(window).on('scroll', function() {
 		}
 	</script>
 	<script>
-		$(function(){
-		$("#view").animate({opacity:'1'},"2000");
+		$(function () {
+			$("#view").animate({ opacity: '1' }, "2000");
 		});
-		</script> 
-	
+	</script>
+
 	<script src="js/javascript.js"></script>
 
 </body>
