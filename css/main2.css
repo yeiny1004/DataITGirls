@@ -64,17 +64,16 @@ html, body {
 	align-items: center;
   }
 
-
-
-body {
-max-width: 1920px;    
+.full_box0 {
+	max-width: 1920px;    
    margin-top: 0;
    margin-bottom: 0;
    margin-left: auto;
    margin-right: auto;
-   
    padding: 0;
 }
+
+
 
 .logo_main {
 	width: 109px;
@@ -1056,13 +1055,14 @@ max-width: 1920px;
 		-webkit-transform: skewX(-30deg);
 		transform: skewX(-30deg);
 		-webkit-animation: shine 1s infinite;
-		animation: shine 1s infinite;
+		animation: shine 1.2s infinite;
 	}
 	
 
 	
 	.ch-grid:hover:before {
 		animation-play-state: paused;
+		
 	}
 
 
@@ -1627,6 +1627,7 @@ max-width: 1920px;
 
 	.container.\31 25\25 {
 		width: 100%;
+		max-width: 1200px;
 		max-width: 1200px;
 		min-width: 960px;
 	}
