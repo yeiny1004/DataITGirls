@@ -1146,8 +1146,11 @@ html, body {
 	}
 
 	.contacts_main1{
+		max-width: 1280px;
 		font-weight: 400;
-		padding-left: 3%;
+		padding-left: 4%;
+		padding-right: 4%;
+		margin: auto;
 		text-align: left;
 		font-size: 25px;
 	}
